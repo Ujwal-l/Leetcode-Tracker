@@ -52,9 +52,6 @@ export function CategorySection({
         className='p-2 sm:p-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-3 cursor-pointer hover:opacity-90 transition-opacity'
       >
         <div className='flex items-start gap-2 sm:gap-3 flex-1 min-w-0'>
-          <span className='text-lg sm:text-xl flex-shrink-0'>
-            {category.icon}
-          </span>
           <div className='min-w-0 flex-1'>
             <h3 className='font-bold text-gray-800 dark:text-gray-100 text-xs sm:text-sm break-words'>
               {category.name}

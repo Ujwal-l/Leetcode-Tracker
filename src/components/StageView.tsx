@@ -44,9 +44,6 @@ export function StageView({ stage, onToggleProblem }: StageViewProps) {
       {/* Stage Header */}
       <div className='mb-4 sm:mb-6'>
         <div className='flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-3 mb-2 sm:mb-2'>
-          <span className='text-3xl sm:text-4xl flex-shrink-0'>
-            {stage.emoji}
-          </span>
           <div className='min-w-0 flex-1'>
             <h2 className='text-base sm:text-lg md:text-xl font-bold text-gray-800 dark:text-white break-words'>
               Stage {stage.number} — {stage.name}
