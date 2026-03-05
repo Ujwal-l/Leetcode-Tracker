@@ -5,13 +5,12 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { StageView } from '@/components/StageView';
 import problemsData from '@/lib/problems';
-import { Download, Upload, Moon, Sun, ArrowLeft } from 'lucide-react';
+import { Download, Upload, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function ProblemsTrackerPage() {
   const [stages, setStages] = useState(problemsData);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [darkMode, setDarkMode] = useState(false);
 
   // Handle scroll progress
   useEffect(() => {
@@ -37,11 +36,6 @@ export default function ProblemsTrackerPage() {
       } catch (e) {
         console.error('Failed to load saved progress:', e);
       }
-    }
-    const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
-    setDarkMode(savedDarkMode);
-    if (savedDarkMode) {
-      document.documentElement.classList.add('dark');
     }
   }, []);
 
@@ -136,17 +130,6 @@ export default function ProblemsTrackerPage() {
     }
   };
 
-  const toggleDarkMode = () => {
-    const newDarkMode = !darkMode;
-    setDarkMode(newDarkMode);
-    localStorage.setItem('dark-mode', newDarkMode.toString());
-    if (newDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  };
-
   return (
     <div className='min-h-screen bg-white text-black'>
       {/* Minimal background */}
@@ -181,17 +164,6 @@ export default function ProblemsTrackerPage() {
               </div>
               <div className='flex flex-wrap gap-2 sm:gap-3 items-center flex-shrink-0'>
                 <Button
-                  onClick={toggleDarkMode}
-                  className='flex items-center gap-1 text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
-                  variant='outline'
-                >
-                  {darkMode ? (
-                    <Sun className='w-3 h-3 sm:w-4 sm:h-4' />
-                  ) : (
-                    <Moon className='w-3 h-3 sm:w-4 sm:h-4' />
-                  )}
-                </Button>
-                <Button
                   onClick={exportProgress}
                   className='flex items-center gap-1 text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
                   variant='outline'
@@ -215,7 +187,7 @@ export default function ProblemsTrackerPage() {
                 </label>
                 <Button
                   onClick={resetProgress}
-                  className='text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
+                  className='text-xs px-3 py-2 bg-black border border-black text-white hover:bg-gray-800 transition-colors rounded-lg font-medium'
                   variant='destructive'
                 >
                   Reset
