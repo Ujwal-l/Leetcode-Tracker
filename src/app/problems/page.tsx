@@ -307,7 +307,7 @@ export default function ProblemsTrackerPage() {
             className='mt-8 sm:mt-16 p-4 sm:p-6 md:p-8 bg-white dark:bg-slate-800 rounded-2xl border-2 border-blue-200 dark:border-slate-700 shadow-lg'
           >
             <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4'>
-              🎯 How to Use This List
+              How to Use This List
             </h3>
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6'>
               <div>
@@ -315,9 +315,9 @@ export default function ProblemsTrackerPage() {
                   Daily Routine
                 </h4>
                 <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>✅ 2 new problems/day</li>
-                  <li>✅ 1 old revision problem</li>
-                  <li>✅ Weekly review</li>
+                  <li>2 new problems/day</li>
+                  <li>1 old revision problem</li>
+                  <li> Weekly review</li>
                 </ul>
               </div>
               <div>
@@ -325,9 +325,9 @@ export default function ProblemsTrackerPage() {
                   Time Limits
                 </h4>
                 <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>🟢 Easy → 15–20 min</li>
-                  <li>🟡 Medium → 30–40 min</li>
-                  <li>🔴 Hard → 45–60 min</li>
+                  <li> Easy → 15–20 min</li>
+                  <li> Medium → 30–40 min</li>
+                  <li> Hard → 45–60 min</li>
                 </ul>
               </div>
               <div>
@@ -335,9 +335,9 @@ export default function ProblemsTrackerPage() {
                   If Stuck
                 </h4>
                 <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>🔹 Struggle 25–30 min</li>
-                  <li>🔹 Take hint</li>
-                  <li>🔹 Re-implement next day</li>
+                  <li>Struggle 25–30 min</li>
+                  <li>Take hint</li>
+                  <li>Re-implement next day</li>
                 </ul>
               </div>
               <div>
@@ -345,9 +345,9 @@ export default function ProblemsTrackerPage() {
                   Interview Ready When
                 </h4>
                 <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>✅ Stage 5 comfortable</li>
-                  <li>✅ Trees are natural</li>
-                  <li>✅ Sliding window auto</li>
+                  <li>Stage 5 comfortable</li>
+                  <li>Trees are natural</li>
+                  <li>Sliding window auto</li>
                 </ul>
               </div>
             </div>

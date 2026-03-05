@@ -9,7 +9,6 @@ export interface Problem {
 export interface Category {
   id: string;
   name: string;
-  icon: string;
   problems: Problem[];
   color: string;
 }
@@ -19,20 +18,17 @@ export interface Stage {
   name: string;
   description: string;
   categories: Category[];
-  emoji: string;
 }
 
 const problemsData: Stage[] = [
   {
     number: 1,
     name: 'Foundations',
-    emoji: '🚀',
     description: 'Build raw pattern recognition.',
     categories: [
       {
         id: 'arrays-hashing',
         name: 'Arrays & Hashing',
-        icon: '📦',
         color: 'bg-blue-50 border-blue-200',
         problems: [
           {
@@ -89,7 +85,6 @@ const problemsData: Stage[] = [
       {
         id: 'two-pointers',
         name: 'Two Pointers',
-        icon: '👉',
         color: 'bg-purple-50 border-purple-200',
         problems: [
           {
@@ -132,7 +127,6 @@ const problemsData: Stage[] = [
       {
         id: 'sliding-window',
         name: 'Sliding Window — Level 1',
-        icon: '🪟',
         color: 'bg-amber-50 border-amber-200',
         problems: [
           {
@@ -177,13 +171,11 @@ const problemsData: Stage[] = [
   {
     number: 2,
     name: 'Stack, Binary Search, Linked List',
-    emoji: '🌳',
     description: 'Master fundamental data structures.',
     categories: [
       {
         id: 'stack',
         name: 'Stack',
-        icon: '📚',
         color: 'bg-red-50 border-red-200',
         problems: [
           {
@@ -226,7 +218,6 @@ const problemsData: Stage[] = [
       {
         id: 'binary-search',
         name: 'Binary Search',
-        icon: '🔍',
         color: 'bg-green-50 border-green-200',
         problems: [
           {
@@ -269,7 +260,6 @@ const problemsData: Stage[] = [
       {
         id: 'linked-list',
         name: 'Linked List',
-        icon: '🔗',
         color: 'bg-indigo-50 border-indigo-200',
         problems: [
           {
@@ -314,13 +304,11 @@ const problemsData: Stage[] = [
   {
     number: 3,
     name: 'Trees (FAANG FAVORITE ZONE)',
-    emoji: '🌲',
     description: 'Spend serious time here.',
     categories: [
       {
         id: 'trees',
         name: 'Binary Trees',
-        icon: '🌳',
         color: 'bg-teal-50 border-teal-200',
         problems: [
           {
@@ -400,13 +388,11 @@ const problemsData: Stage[] = [
   {
     number: 4,
     name: 'Backtracking',
-    emoji: '🔥',
     description: 'Master recursive problem solving.',
     categories: [
       {
         id: 'backtracking',
         name: 'Backtracking',
-        icon: '↩️',
         color: 'bg-orange-50 border-orange-200',
         problems: [
           {
@@ -465,13 +451,11 @@ const problemsData: Stage[] = [
   {
     number: 5,
     name: 'Heap / Priority Queue',
-    emoji: '📊',
     description: 'Learn efficient data organization.',
     categories: [
       {
         id: 'heap',
         name: 'Heap / Priority Queue',
-        icon: '⬆️',
         color: 'bg-pink-50 border-pink-200',
         problems: [
           {
@@ -516,13 +500,11 @@ const problemsData: Stage[] = [
   {
     number: 6,
     name: 'Greedy',
-    emoji: '🧠',
     description: 'Make optimal local choices.',
     categories: [
       {
         id: 'greedy',
         name: 'Greedy',
-        icon: '🎯',
         color: 'bg-lime-50 border-lime-200',
         problems: [
           {
@@ -581,13 +563,11 @@ const problemsData: Stage[] = [
   {
     number: 7,
     name: 'Dynamic Programming (CRITICAL)',
-    emoji: '💣',
     description: 'Take this slowly.',
     categories: [
       {
         id: 'dp-basics',
         name: 'DP Basics',
-        icon: '🔢',
         color: 'bg-cyan-50 border-cyan-200',
         problems: [
           {
@@ -637,7 +617,6 @@ const problemsData: Stage[] = [
       {
         id: 'dp-intermediate',
         name: 'DP Intermediate',
-        icon: '🪜',
         color: 'bg-fuchsia-50 border-fuchsia-200',
         problems: [
           {
@@ -696,13 +675,11 @@ const problemsData: Stage[] = [
   {
     number: 8,
     name: 'Graphs',
-    emoji: '🌐',
     description: 'Must master BFS/DFS thinking.',
     categories: [
       {
         id: 'graphs',
         name: 'Graphs',
-        icon: '🕸️',
         color: 'bg-violet-50 border-violet-200',
         problems: [
           {
@@ -775,13 +752,11 @@ const problemsData: Stage[] = [
   {
     number: 9,
     name: 'Advanced / FAANG Differentiators',
-    emoji: '🧩',
     description: 'Do these after everything above feels comfortable.',
     categories: [
       {
         id: 'advanced',
         name: 'Advanced Problems',
-        icon: '💎',
         color: 'bg-rose-50 border-rose-200',
         problems: [
           {
@@ -854,13 +829,11 @@ const problemsData: Stage[] = [
   {
     number: 10,
     name: 'Phase 2 — Pattern Reinforcement',
-    emoji: '🔄',
     description: 'Deepen patterns with variations (+110 problems).',
     categories: [
       {
         id: 'phase2-arrays-hashing',
         name: 'Arrays & Hashing (+12)',
-        icon: '📦',
         color: 'bg-blue-50 border-blue-200',
         problems: [
           {
@@ -952,7 +925,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-sliding-window',
         name: 'Sliding Window (+10)',
-        icon: '🪟',
         color: 'bg-amber-50 border-amber-200',
         problems: [
           {
@@ -1030,7 +1002,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-binary-search',
         name: 'Binary Search (+10)',
-        icon: '🔍',
         color: 'bg-green-50 border-green-200',
         problems: [
           {
@@ -1108,7 +1079,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-stack',
         name: 'Stack (+8)',
-        icon: '📚',
         color: 'bg-red-50 border-red-200',
         problems: [
           {
@@ -1172,7 +1142,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-linked-list',
         name: 'Linked List (+8)',
-        icon: '🔗',
         color: 'bg-indigo-50 border-indigo-200',
         problems: [
           {
@@ -1236,7 +1205,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-trees',
         name: 'Trees (+15)',
-        icon: '🌳',
         color: 'bg-teal-50 border-teal-200',
         problems: [
           {
@@ -1349,7 +1317,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-backtracking',
         name: 'Backtracking (+8)',
-        icon: '↩️',
         color: 'bg-orange-50 border-orange-200',
         problems: [
           {
@@ -1413,7 +1380,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-heap',
         name: 'Heap (+6)',
-        icon: '⬆️',
         color: 'bg-pink-50 border-pink-200',
         problems: [
           {
@@ -1463,7 +1429,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-greedy',
         name: 'Greedy (+6)',
-        icon: '🎯',
         color: 'bg-lime-50 border-lime-200',
         problems: [
           {
@@ -1513,7 +1478,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-dp',
         name: 'Dynamic Programming (+15)',
-        icon: '🔢',
         color: 'bg-cyan-50 border-cyan-200',
         problems: [
           {
@@ -1626,7 +1590,6 @@ const problemsData: Stage[] = [
       {
         id: 'phase2-graphs',
         name: 'Graphs (+12)',
-        icon: '🕸️',
         color: 'bg-violet-50 border-violet-200',
         problems: [
           {
