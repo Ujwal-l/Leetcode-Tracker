@@ -23,28 +23,17 @@ export function CategorySection({
   const progressPercent = (completedCount / totalCount) * 100;
 
   const colorMap: { [key: string]: string } = {
-    'bg-blue-50 border-blue-200':
-      'bg-blue-50 dark:bg-blue-950 dark:border-blue-800 border-blue-200',
-    'bg-amber-50 border-amber-200':
-      'bg-amber-50 dark:bg-amber-950 dark:border-amber-800 border-amber-200',
-    'bg-green-50 border-green-200':
-      'bg-green-50 dark:bg-green-950 dark:border-green-800 border-green-200',
-    'bg-red-50 border-red-200':
-      'bg-red-50 dark:bg-red-950 dark:border-red-800 border-red-200',
-    'bg-indigo-50 border-indigo-200':
-      'bg-indigo-50 dark:bg-indigo-950 dark:border-indigo-800 border-indigo-200',
-    'bg-teal-50 border-teal-200':
-      'bg-teal-50 dark:bg-teal-950 dark:border-teal-800 border-teal-200',
-    'bg-orange-50 border-orange-200':
-      'bg-orange-50 dark:bg-orange-950 dark:border-orange-800 border-orange-200',
-    'bg-pink-50 border-pink-200':
-      'bg-pink-50 dark:bg-pink-950 dark:border-pink-800 border-pink-200',
-    'bg-lime-50 border-lime-200':
-      'bg-lime-50 dark:bg-lime-950 dark:border-lime-800 border-lime-200',
-    'bg-cyan-50 border-cyan-200':
-      'bg-cyan-50 dark:bg-cyan-950 dark:border-cyan-800 border-cyan-200',
-    'bg-violet-50 border-violet-200':
-      'bg-violet-50 dark:bg-violet-950 dark:border-violet-800 border-violet-200',
+    'bg-blue-50 border-blue-200': 'bg-gray-50 border-gray-200',
+    'bg-amber-50 border-amber-200': 'bg-gray-50 border-gray-200',
+    'bg-green-50 border-green-200': 'bg-gray-50 border-gray-200',
+    'bg-red-50 border-red-200': 'bg-gray-50 border-gray-200',
+    'bg-indigo-50 border-indigo-200': 'bg-gray-50 border-gray-200',
+    'bg-teal-50 border-teal-200': 'bg-gray-50 border-gray-200',
+    'bg-orange-50 border-orange-200': 'bg-gray-50 border-gray-200',
+    'bg-pink-50 border-pink-200': 'bg-gray-50 border-gray-200',
+    'bg-lime-50 border-lime-200': 'bg-gray-50 border-gray-200',
+    'bg-cyan-50 border-cyan-200': 'bg-gray-50 border-gray-200',
+    'bg-violet-50 border-violet-200': 'bg-gray-50 border-gray-200',
   };
 
   const darkColor = colorMap[category.color] || category.color;

@@ -30,7 +30,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '1️⃣',
       description:
         'The absolute basics every system design question relies on.',
-      color: 'bg-blue-50 border-blue-200 dark:bg-blue-900 dark:border-blue-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         { id: 'csa', title: 'Client–Server Architecture', completed: false },
         {
@@ -66,7 +66,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '2️⃣',
       description: 'Important for understanding how services communicate.',
       color:
-        'bg-purple-50 border-purple-200 dark:bg-purple-900 dark:border-purple-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'dns', title: 'DNS', completed: false },
         { id: 'http-https', title: 'HTTP / HTTPS', completed: false },
@@ -88,7 +88,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '3️⃣',
       description: 'Understanding how data is stored and accessed.',
       color:
-        'bg-green-50 border-green-200 dark:bg-green-900 dark:border-green-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'sql', title: 'SQL', completed: false },
         {
@@ -120,7 +120,7 @@ const systemDesignData: SystemDesignRoadmap = {
       name: 'Data Partitioning',
       emoji: '4️⃣',
       description: 'Used when data becomes too large for one machine.',
-      color: 'bg-pink-50 border-pink-200 dark:bg-pink-900 dark:border-pink-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         { id: 'sharding', title: 'Sharding', completed: false },
         {
@@ -147,7 +147,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '5️⃣',
       description: 'One of the most common design techniques.',
       color:
-        'bg-yellow-50 border-yellow-200 dark:bg-yellow-900 dark:border-yellow-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'cache-aside', title: 'Cache Aside Pattern', completed: false },
         { id: 'write-through', title: 'Write Through Cache', completed: false },
@@ -178,7 +178,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '6️⃣',
       description: 'Ensuring traffic is evenly distributed.',
       color:
-        'bg-indigo-50 border-indigo-200 dark:bg-indigo-900 dark:border-indigo-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'round-robin', title: 'Round Robin', completed: false },
         { id: 'weighted-rr', title: 'Weighted Round Robin', completed: false },
@@ -200,7 +200,7 @@ const systemDesignData: SystemDesignRoadmap = {
       name: 'Asynchronous Processing',
       emoji: '7️⃣',
       description: 'Important for high-scale systems.',
-      color: 'bg-red-50 border-red-200 dark:bg-red-900 dark:border-red-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         { id: 'message-queues', title: 'Message Queues', completed: false },
         {
@@ -222,7 +222,7 @@ const systemDesignData: SystemDesignRoadmap = {
       name: 'Distributed Systems Concepts',
       emoji: '8️⃣',
       description: 'Core ideas for large scale systems.',
-      color: 'bg-cyan-50 border-cyan-200 dark:bg-cyan-900 dark:border-cyan-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         {
           id: 'distributed-locks',
@@ -245,7 +245,7 @@ const systemDesignData: SystemDesignRoadmap = {
       name: 'Storage Systems',
       emoji: '9️⃣',
       description: 'Understanding how large systems store data.',
-      color: 'bg-teal-50 border-teal-200 dark:bg-teal-900 dark:border-teal-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         { id: 'object-storage', title: 'Object Storage', completed: false },
         { id: 'blob-storage', title: 'Blob Storage', completed: false },
@@ -260,7 +260,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '🔟',
       description: 'Making systems survive failures.',
       color:
-        'bg-orange-50 border-orange-200 dark:bg-orange-900 dark:border-orange-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         {
           id: 'circuit-breaker',
@@ -284,7 +284,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '1️⃣1️⃣',
       description: 'Important for production systems.',
       color:
-        'bg-violet-50 border-violet-200 dark:bg-violet-900 dark:border-violet-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'authentication', title: 'Authentication', completed: false },
         { id: 'authorization', title: 'Authorization', completed: false },
@@ -328,7 +328,7 @@ const systemDesignData: SystemDesignRoadmap = {
       description:
         'Foundational systems to build core concepts - Start with these 8 problems',
       color:
-        'bg-green-50 border-green-200 dark:bg-green-900 dark:border-green-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         {
           id: 'url-shortener',
@@ -379,7 +379,7 @@ const systemDesignData: SystemDesignRoadmap = {
       description:
         'Real product systems - 8 problems that introduce distributed systems',
       color:
-        'bg-yellow-50 border-yellow-200 dark:bg-yellow-900 dark:border-yellow-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         {
           id: 'instagram-feed',
@@ -429,7 +429,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '🔴',
       description:
         'Distributed systems at massive scale - 9 problems for senior roles',
-      color: 'bg-red-50 border-red-200 dark:bg-red-900 dark:border-red-700',
+      color: 'bg-gray-50 border-gray-200',
       topics: [
         {
           id: 'uber-matching',
@@ -519,7 +519,7 @@ const systemDesignData: SystemDesignRoadmap = {
       emoji: '⚡',
       description: 'Making systems fast and efficient',
       color:
-        'bg-orange-50 border-orange-200 dark:bg-orange-900 dark:border-orange-700',
+        'bg-gray-50 border-gray-200',
       topics: [
         { id: 'caching-patterns', title: 'Caching', completed: false },
         { id: 'cdn-usage', title: 'CDN', completed: false },

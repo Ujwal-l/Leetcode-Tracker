@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import systemDesignData from '@/lib/systemDesign';
 import type { SystemDesignRoadmap } from '@/lib/systemDesign';
-import { Download, Upload, Moon, Sun } from 'lucide-react';
+import { Download, Upload, Moon, Sun, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export default function SystemDesignPage() {
@@ -144,6 +145,12 @@ export default function SystemDesignPage() {
         <div className='sticky top-0 z-40 bg-white border-b border-gray-100'>
           <div className='max-w-7xl mx-auto px-6 sm:px-8 py-6'>
             <div className='flex items-center justify-between gap-4 mb-6'>
+              <Link
+                href='/'
+                className='flex items-center gap-2 text-gray-600 hover:text-black transition-colors'
+              >
+                <ArrowLeft className='w-5 h-5' />
+              </Link>
               <div>
                 <h1 className='text-4xl sm:text-5xl font-semibold tracking-tight'>
                   System Design
@@ -153,10 +160,10 @@ export default function SystemDesignPage() {
                   problems
                 </p>
               </div>
-              <div className='flex flex-wrap gap-1 sm:gap-2 items-center flex-shrink-0'>
+              <div className='flex flex-wrap gap-2 sm:gap-3 items-center flex-shrink-0'>
                 <Button
                   onClick={toggleDarkMode}
-                  className='flex items-center gap-1 text-xs px-2 sm:px-3 py-1.5 sm:py-2 bg-gray-100 dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600 border border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 transition-all duration-200 rounded-lg shadow-sm hover:shadow-md dark:shadow-lg'
+                  className='flex items-center gap-1 text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
                   variant='outline'
                 >
                   {darkMode ? (
@@ -167,14 +174,14 @@ export default function SystemDesignPage() {
                 </Button>
                 <Button
                   onClick={exportProgress}
-                  className='flex items-center gap-1 text-xs px-2 sm:px-3 py-1.5 sm:py-2 bg-blue-100 dark:bg-blue-900 hover:bg-blue-200 dark:hover:bg-blue-800 border border-blue-300 dark:border-blue-700 text-blue-700 dark:text-blue-200 transition-all duration-200 rounded-lg shadow-sm hover:shadow-md dark:shadow-lg'
+                  className='flex items-center gap-1 text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
                   variant='outline'
                 >
                   <Download className='w-3 h-3' />
                 </Button>
                 <label className='flex items-center'>
                   <Button
-                    className='flex items-center gap-1 text-xs px-2 sm:px-3 py-1.5 sm:py-2 bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800 border border-green-300 dark:border-green-700 text-green-700 dark:text-green-200 transition-all duration-200 rounded-lg shadow-sm hover:shadow-md dark:shadow-lg'
+                    className='flex items-center gap-1 text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
                     variant='outline'
                     type='button'
                   >
@@ -189,7 +196,7 @@ export default function SystemDesignPage() {
                 </label>
                 <Button
                   onClick={resetProgress}
-                  className='text-xs px-2 sm:px-3 py-1.5 sm:py-2 bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 border border-red-300 dark:border-red-700 text-red-700 dark:text-red-200 transition-all duration-200 rounded-lg shadow-sm hover:shadow-md dark:shadow-lg'
+                  className='text-xs px-3 py-2 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors rounded-lg'
                   variant='destructive'
                 >
                   Reset
@@ -198,58 +205,54 @@ export default function SystemDesignPage() {
             </div>
 
             {/* Overall Progress */}
-            <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4'>
+            <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4'>
               <motion.div
-                className='bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 rounded-lg p-3 sm:p-4 border border-blue-200 dark:border-blue-700 cursor-default'
+                className='bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-100'
                 whileHover={{
-                  y: -6,
-                  boxShadow: '0 20px 40px rgba(59, 130, 246, 0.2)',
+                  y: -2,
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.05)',
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               >
-                <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium'>
+                <p className='text-xs sm:text-sm text-gray-600 font-medium'>
                   Completed
                 </p>
-                <p className='text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mt-1'>
+                <p className='text-2xl sm:text-3xl md:text-4xl font-semibold text-black mt-2'>
                   {completedTopics}
                 </p>
                 <p className='text-xs text-gray-500 mt-1'>learned</p>
               </motion.div>
               <motion.div
-                className='bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-3 sm:p-4 border border-purple-200 dark:border-purple-700 cursor-default'
+                className='bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-100'
                 whileHover={{
-                  y: -6,
-                  boxShadow: '0 20px 40px rgba(168, 85, 247, 0.2)',
+                  y: -2,
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.05)',
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               >
-                <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium'>
+                <p className='text-xs sm:text-sm text-gray-600 font-medium'>
                   Remaining
                 </p>
-                <p className='text-xl sm:text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400 mt-1'>
+                <p className='text-2xl sm:text-3xl md:text-4xl font-semibold text-black mt-2'>
                   {totalTopics - completedTopics}
                 </p>
-                <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
-                  to study
-                </p>
+                <p className='text-xs text-gray-500 mt-1'>to study</p>
               </motion.div>
               <motion.div
-                className='bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 rounded-lg p-3 sm:p-4 border border-pink-200 dark:border-pink-700 cursor-default'
+                className='bg-gray-50 rounded-lg p-4 sm:p-6 border border-gray-100'
                 whileHover={{
-                  y: -6,
-                  boxShadow: '0 20px 40px rgba(236, 72, 153, 0.2)',
+                  y: -2,
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.05)',
                 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               >
-                <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium'>
+                <p className='text-xs sm:text-sm text-gray-600 font-medium'>
                   Progress
                 </p>
-                <p className='text-xl sm:text-2xl md:text-3xl font-bold text-pink-600 dark:text-pink-400 mt-1'>
+                <p className='text-xl sm:text-2xl md:text-3xl font-bold text-black mt-1'>
                   {Math.round(overallProgressPercent)}%
                 </p>
-                <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
-                  complete
-                </p>
+                <p className='text-xs text-gray-500 mt-1'>complete</p>
               </motion.div>
               <motion.div
                 className='bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 rounded-lg p-3 sm:p-4 border border-green-200 dark:border-green-700 cursor-default'
