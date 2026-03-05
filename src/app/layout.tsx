@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Header } from '@/components/Header';
+// import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
   title: 'LeetCode Problem Tracker',
@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang='en' suppressHydrationWarning>
       <body className='bg-white dark:bg-slate-950 text-gray-900 dark:text-gray-100'>
-        <Header />
+        {/* <Header /> */}
         {children}
       </body>
     </html>

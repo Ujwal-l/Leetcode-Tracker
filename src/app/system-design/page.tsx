@@ -2,13 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { StageView } from '@/components/StageView';
-import problemsData from '@/lib/problems';
+import systemDesignData from '@/lib/systemDesign';
+import type { SystemDesignRoadmap } from '@/lib/systemDesign';
 import { Download, Upload, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export default function ProblemsTrackerPage() {
-  const [stages, setStages] = useState(problemsData);
+export default function SystemDesignPage() {
+  const [categories, setCategories] = useState(systemDesignData.categories);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -28,11 +28,11 @@ export default function ProblemsTrackerPage() {
 
   // Load progress from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('problems-progress');
+    const saved = localStorage.getItem('system-design-progress');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setStages(parsed);
+        setCategories(parsed);
       } catch (e) {
         console.error('Failed to load saved progress:', e);
       }
@@ -46,65 +46,46 @@ export default function ProblemsTrackerPage() {
 
   // Save progress to localStorage
   useEffect(() => {
-    localStorage.setItem('problems-progress', JSON.stringify(stages));
-  }, [stages]);
+    localStorage.setItem('system-design-progress', JSON.stringify(categories));
+  }, [categories]);
 
-  const toggleProblem = (
-    stageIndex: number,
-    categoryId: string,
-    problemId: string,
-  ) => {
-    setStages((prev) =>
-      prev.map((stage, sIdx) =>
-        sIdx === stageIndex
+  const toggleTopic = (categoryId: string, topicId: string) => {
+    setCategories((prev) =>
+      prev.map((cat) =>
+        cat.id === categoryId
           ? {
-              ...stage,
-              categories: stage.categories.map((cat) =>
-                cat.id === categoryId
-                  ? {
-                      ...cat,
-                      problems: cat.problems.map((p) =>
-                        p.id === problemId
-                          ? { ...p, completed: !p.completed }
-                          : p,
-                      ),
-                    }
-                  : cat,
+              ...cat,
+              topics: cat.topics.map((topic) =>
+                topic.id === topicId
+                  ? { ...topic, completed: !topic.completed }
+                  : topic,
               ),
             }
-          : stage,
+          : cat,
       ),
     );
   };
 
   // Calculate overall stats
-  const totalProblems = stages.reduce(
-    (sum, stage) =>
-      sum +
-      stage.categories.reduce((catSum, cat) => catSum + cat.problems.length, 0),
+  const totalTopics = categories.reduce(
+    (sum, cat) => sum + cat.topics.length,
     0,
   );
 
-  const completedProblems = stages.reduce(
-    (sum, stage) =>
-      sum +
-      stage.categories.reduce(
-        (catSum, cat) =>
-          catSum + cat.problems.filter((p) => p.completed).length,
-        0,
-      ),
+  const completedTopics = categories.reduce(
+    (sum, cat) => sum + cat.topics.filter((t) => t.completed).length,
     0,
   );
 
-  const overallProgressPercent = (completedProblems / totalProblems) * 100;
+  const overallProgressPercent = (completedTopics / totalTopics) * 100;
 
   const exportProgress = () => {
-    const data = JSON.stringify(stages, null, 2);
+    const data = JSON.stringify(categories, null, 2);
     const blob = new Blob([data], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `problems-progress-${new Date().toISOString().split('T')[0]}.json`;
+    a.download = `system-design-progress-${new Date().toISOString().split('T')[0]}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -119,7 +100,7 @@ export default function ProblemsTrackerPage() {
     reader.onload = (e) => {
       try {
         const imported = JSON.parse(e.target?.result as string);
-        setStages(imported);
+        setCategories(imported);
         alert('Progress imported successfully!');
       } catch {
         alert('Failed to import progress file');
@@ -130,8 +111,8 @@ export default function ProblemsTrackerPage() {
 
   const resetProgress = () => {
     if (confirm('Are you sure you want to reset all progress?')) {
-      setStages(problemsData);
-      localStorage.removeItem('problems-progress');
+      setCategories(systemDesignData.categories);
+      localStorage.removeItem('system-design-progress');
     }
   };
 
@@ -165,11 +146,11 @@ export default function ProblemsTrackerPage() {
             <div className='flex items-center justify-between gap-4 mb-6'>
               <div>
                 <h1 className='text-4xl sm:text-5xl font-semibold tracking-tight'>
-                  Problems
+                  System Design
                 </h1>
                 <p className='text-gray-600 mt-2 hidden sm:block'>
-                  Solve {totalProblems} curated coding challenges across{' '}
-                  {stages.length} stages
+                  Learn {totalTopics} essential concepts and solve interview
+                  problems
                 </p>
               </div>
               <div className='flex flex-wrap gap-1 sm:gap-2 items-center flex-shrink-0'>
@@ -230,9 +211,9 @@ export default function ProblemsTrackerPage() {
                   Completed
                 </p>
                 <p className='text-xl sm:text-2xl md:text-3xl font-bold text-blue-600 dark:text-blue-400 mt-1'>
-                  {completedProblems}
+                  {completedTopics}
                 </p>
-                <p className='text-xs text-gray-500 mt-1'>solved</p>
+                <p className='text-xs text-gray-500 mt-1'>learned</p>
               </motion.div>
               <motion.div
                 className='bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 rounded-lg p-3 sm:p-4 border border-purple-200 dark:border-purple-700 cursor-default'
@@ -246,10 +227,10 @@ export default function ProblemsTrackerPage() {
                   Remaining
                 </p>
                 <p className='text-xl sm:text-2xl md:text-3xl font-bold text-purple-600 dark:text-purple-400 mt-1'>
-                  {totalProblems - completedProblems}
+                  {totalTopics - completedTopics}
                 </p>
                 <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
-                  to do
+                  to study
                 </p>
               </motion.div>
               <motion.div
@@ -279,13 +260,13 @@ export default function ProblemsTrackerPage() {
                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               >
                 <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium'>
-                  Total
+                  Total Topics
                 </p>
                 <p className='text-xl sm:text-2xl md:text-3xl font-bold text-green-600 dark:text-green-400 mt-1'>
-                  {totalProblems}
+                  {totalTopics}
                 </p>
                 <p className='text-xs text-gray-500 dark:text-gray-400 mt-1'>
-                  problems
+                  topics
                 </p>
               </motion.div>
             </div>
@@ -312,72 +293,112 @@ export default function ProblemsTrackerPage() {
           </div>
         </div>
 
-        {/* Content */}
-        <main className='max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-12'>
-          {stages.map((stage, stageIndex) => (
-            <StageView
-              key={stage.number}
-              stage={stage}
-              onToggleProblem={(categoryId, problemId) =>
-                toggleProblem(stageIndex, categoryId, problemId)
-              }
-            />
-          ))}
+        {/* Topics Grid */}
+        <div className='max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6'>
+            {categories.map((category, idx) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.05 }}
+              >
+                <div
+                  className={`${category.color} rounded-xl p-4 sm:p-6 border backdrop-blur-sm`}
+                >
+                  <div className='flex items-center gap-2 mb-3'>
+                    <span className='text-2xl'>{category.emoji}</span>
+                    <h2 className='text-lg sm:text-xl font-bold text-gray-900 dark:text-white'>
+                      {category.name}
+                    </h2>
+                  </div>
+                  <p className='text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-4'>
+                    {category.description}
+                  </p>
 
-          {/* Footer with Tips */}
+                  {/* Progress in category */}
+                  <div className='mb-4'>
+                    <div className='flex justify-between text-xs mb-1'>
+                      <span className='text-gray-600 dark:text-gray-400'>
+                        {category.topics.filter((t) => t.completed).length}/
+                        {category.topics.length}
+                      </span>
+                      <span className='text-gray-600 dark:text-gray-400'>
+                        {Math.round(
+                          (category.topics.filter((t) => t.completed).length /
+                            category.topics.length) *
+                            100,
+                        )}
+                        %
+                      </span>
+                    </div>
+                    <div className='w-full h-1.5 bg-gray-300 dark:bg-gray-600 rounded-full overflow-hidden'>
+                      <motion.div
+                        className='h-full bg-gradient-to-r from-green-400 to-blue-500'
+                        initial={{ width: 0 }}
+                        animate={{
+                          width: `${
+                            (category.topics.filter((t) => t.completed).length /
+                              category.topics.length) *
+                            100
+                          }%`,
+                        }}
+                        transition={{ duration: 0.5 }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Topics */}
+                  <div className='space-y-2'>
+                    {category.topics.map((topic) => (
+                      <motion.label
+                        key={topic.id}
+                        className='flex items-center gap-2 p-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer transition-colors'
+                        whileHover={{ x: 4 }}
+                      >
+                        <input
+                          type='checkbox'
+                          checked={topic.completed}
+                          onChange={() => toggleTopic(category.id, topic.id)}
+                          className='w-4 h-4 rounded border-gray-300 text-blue-600 cursor-pointer accent-blue-600'
+                        />
+                        <span
+                          className={`flex-1 text-sm ${
+                            topic.completed
+                              ? 'text-gray-400 dark:text-gray-500 line-through'
+                              : 'text-gray-700 dark:text-gray-300'
+                          }`}
+                        >
+                          {topic.title}
+                        </span>
+                        {topic.completed && <span className='text-lg'>✓</span>}
+                      </motion.label>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer Stats */}
+        <div className='max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-8 sm:py-12 text-center'>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className='mt-8 sm:mt-16 p-4 sm:p-6 md:p-8 bg-white dark:bg-slate-800 rounded-2xl border-2 border-blue-200 dark:border-slate-700 shadow-lg'
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className='bg-white dark:bg-slate-800 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-slate-700 shadow-lg'
           >
-            <h3 className='text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-white mb-4'>
-              🎯 How to Use This List
-            </h3>
-            <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6'>
-              <div>
-                <h4 className='font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2'>
-                  Daily Routine
-                </h4>
-                <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>✅ 2 new problems/day</li>
-                  <li>✅ 1 old revision problem</li>
-                  <li>✅ Weekly review</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className='font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2'>
-                  Time Limits
-                </h4>
-                <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>🟢 Easy → 15–20 min</li>
-                  <li>🟡 Medium → 30–40 min</li>
-                  <li>🔴 Hard → 45–60 min</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className='font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2'>
-                  If Stuck
-                </h4>
-                <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>🔹 Struggle 25–30 min</li>
-                  <li>🔹 Take hint</li>
-                  <li>🔹 Re-implement next day</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className='font-bold text-gray-800 dark:text-gray-100 text-sm sm:text-base mb-2'>
-                  Interview Ready When
-                </h4>
-                <ul className='space-y-1 text-gray-700 dark:text-gray-300 text-xs sm:text-sm'>
-                  <li>✅ Stage 5 comfortable</li>
-                  <li>✅ Trees are natural</li>
-                  <li>✅ Sliding window auto</li>
-                </ul>
-              </div>
-            </div>
+            <p className='text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-4'>
+              Keep learning and leveling up! 🚀
+            </p>
+            <p className='text-lg sm:text-xl font-bold text-gray-900 dark:text-white'>
+              {completedTopics === totalTopics
+                ? "🎉 You've mastered all system design topics!"
+                : `${Math.round(overallProgressPercent)}% Complete - ${totalTopics - completedTopics} topics to go!`}
+            </p>
           </motion.div>
-        </main>
+        </div>
       </div>
     </div>
   );
